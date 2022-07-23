@@ -1,0 +1,7 @@
+{
+  "name": "ang_pwa_ingecaem",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
