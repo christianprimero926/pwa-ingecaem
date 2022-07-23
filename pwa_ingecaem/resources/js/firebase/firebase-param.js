@@ -1,0 +1,5 @@
+const API_KEY = "AIzaSyCNPss2gFKUIpHHvYluyKEveUK35ESIvD0";
+const PROJECT_ID = "pwa-ingecaem";
+const SENDER_ID = "225926180205";
+const APP_ID = "1:225926180205:web:18d6a8c8916156446f7e64";
+const MEASUREMENT_ID = "DN3B9LQ623";
