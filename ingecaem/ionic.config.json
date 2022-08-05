@@ -1,0 +1,7 @@
+{
+  "name": "ingecaem",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

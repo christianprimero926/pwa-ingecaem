@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-folder',
@@ -8,11 +8,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FolderPage implements OnInit {
   public folder: string;
+  public name: string;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+    this.folder = this.route.snapshot.paramMap.get('id') === 'Tasks' ? 'Tareas' : '' ;
+    console.log(this.route.snapshot.paramMap.get('id') === 'Tasks' ? 'Tareas' : '' );
+    // this.route.queryParams.subscribe(params => {
+    //   this.name = params['name'];
+    // });
+    // console.log(this.route.queryParams);
+
+
   }
 
 }
