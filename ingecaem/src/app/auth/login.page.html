@@ -1,23 +1,52 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>login</ion-title>
-    </ion-toolbar>
-</ion-header>
+<ion-app>
+    <ion-content class="general">
+        <div class="container">
+            <div class="left">
+                <div class="mx-auto app-login-box col-md-8">
+                    <div class="modal-dialog w-100 mx-auto">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="modal-title">
+                                    <h4>
+                                        <div>Welcome back,</div>
+                                        <span>Please sign in to your account below.</span>
+                                    </h4>
+                                </div>
+                                <form (ngSubmit)="login()" [formGroup]="credentials">
+                                    <ion-item fill="solid" class="ion-margin-bottom">
+                                        <ion-input type="email" placeholder="Enter email..." formControlName="email"></ion-input>
+                                        <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+                                    </ion-item>
+                                    <p></p>
 
-<ion-content class="ion-padding">
-    <form (ngSubmit)="login()" [formGroup]="credentials">
-        <ion-item fill="solid" class="ion-margin-bottom">
-            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-            <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
-        </ion-item>
+                                    <ion-item fill="solid" class="ion-margin-bottom">
+                                        <ion-input type="password" placeholder="Enter password..." formControlName="password"></ion-input>
+                                        <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 6 characters</ion-note>
+                                    </ion-item>
 
-        <ion-item fill="solid" class="ion-margin-bottom">
-            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-            <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 6 characters</ion-note>
-        </ion-item>
+                                    <ion-checkbox id="loogedCheck" color="primary" class="custom-control">
+                                        <label for="loogedCheck" class="custom-control-label">Keep me logged in</label>
+                                    </ion-checkbox>
+                                    <div class="divider"></div>
 
-        <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
-        <ion-button expand="full" type="button" (click)="register()">Create Account</ion-button>
-    </form>
+                                    <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
+                                    <ion-button expand="full" type="button" (click)="register()">Create Account</ion-button>
+                                </form>
 
-</ion-content>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right">
+
+            </div>
+
+
+        </div>
+    </ion-content>
+
+</ion-app>
