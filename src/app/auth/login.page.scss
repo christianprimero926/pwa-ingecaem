@@ -1,0 +1,229 @@
+h6 {
+    font-weight: 400;
+}
+
+a {
+    color: #ff8787;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.main-content {
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+    background: url(../resources/images/login/login-bg.jpg) center !important;
+    background-size: cover;
+}
+
+.right {
+    display: flex;
+    background: linear-gradient(135deg, #ffffff 0%, rgb(251 105 113 / 63%) 100%);
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 0fr 4fr;
+    }
+}
+
+.divider {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 1px;
+    overflow: hidden;
+    background: #e9ecef;
+}
+
+.custom-control {
+    position: relative;
+    display: block;
+}
+
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.h-100 {
+    height: 100vh !important;
+}
+
+.ml-auto,
+.mx-auto {
+    margin-left: auto !important;
+}
+
+.mr-auto,
+.mx-auto {
+    margin-right: auto !important;
+}
+
+.col-md-8 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.modal-dialog {
+    box-shadow: 0 0.76875rem 2.4875rem rgb(52 58 64 / 30%), 0 1.3375rem 1.70625rem rgb(52 58 64 / 30%), 0 0.55rem 0.53125rem rgb(0 0 0 / 5%), 0 0.225rem 0.4375rem rgb(52 58 64 / 30%);
+    border-radius: 0.25rem;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    text-align: center !important;
+    font-weight: 400;
+    h4 {
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        font-weight: normal;
+        div {
+            margin-bottom: 0.25rem;
+            font-size: 1.5rem !important;
+            display: block;
+            opacity: .6;
+        }
+        span {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+// --ion-font-family: var(--ion-default-font);
+.modal-content {
+    --ion-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    color: #495057;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+
+.modal-body {
+    border-top: 0.25rem solid #ff656c;
+    border-radius: 0.25rem;
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 0.5rem;
+    pointer-events: none;
+    max-width: 420px;
+}
+
+.modal-checkbox {
+    /* Centra el input personalizado con el texto */
+    .custom-radio-checkbox {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        font-family: arial;
+    }
+    /* Modificador para dar la imagen de checkbox */
+    .custom-radio-checkbox__show--checkbox {
+        background-image: url(../resources/images/login/checkbox-uncheck.png);
+    }
+    /* Oculta input original */
+    .custom-radio-checkbox>.custom-radio-checkbox__input {
+        display: none;
+    }
+    /* Radio personalizado usando <span> */
+    .custom-radio-checkbox>.custom-radio-checkbox__show {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: .5rem;
+        background-size: cover;
+    }
+    /* Cambia el checkbox personalizado cuando es pulsado */
+    .custom-radio-checkbox>.custom-radio-checkbox__input:checked+.custom-radio-checkbox__show--checkbox {
+        background-image: url(../resources/images/login/checkbox-check.png);
+    }
+    span {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    }
+}
+
+.mb-0 .my-0 {
+    margin-bottom: 0 !important;
+    font-size: 1rem;
+}
+
+.btn {
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3880ff;
+    border-color: #3880ff;
+}
+
+.btn-lg,
+.btn-group-lg>.btn {
+    padding: 0.5rem 1rem;
+    // font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    display: inline-block;
+    margin: 0;
+}
+
+.modal-footer {
+    background: #f8f9fa;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: space-around;
+    padding: 1rem;
+    border-top: 1px solid #e9ecef;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    .float-left {
+        float: left !important;
+        margin-right: 0.25rem;
+    }
+    .float-right {
+        float: right !important;
+        margin-left: 0.25rem;
+    }
+}

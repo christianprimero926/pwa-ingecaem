@@ -12,6 +12,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class HomePage {
   profile = null;
+  darkMode: boolean = true;
 
   constructor(
     private avatarService: AvatarService,
@@ -23,6 +24,14 @@ export class HomePage {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
     });
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    this.darkMode = prefersDark.matches;
+  }
+
+  // funcion para cambiar el modo desde el toggle
+  async change() {
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle('dark');
   }
 
   async logout() {
@@ -57,5 +66,7 @@ export class HomePage {
       }
     }
   }
+
+
 
 }
