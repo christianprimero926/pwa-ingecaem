@@ -1,10 +1,11 @@
-.ion-color-red4 {
-    --ion-color-base: var(--ion-color-red4);
-    --ion-color-base-rgb: var(--ion-color-red4-rgb);
-    --ion-color-contrast: var(--ion-color-red4-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-red4-contrast-rgb);
-    --ion-color-shade: var(--ion-color-red4-shade);
-    --ion-color-tint: var(--ion-color-red4-tint);
+h6 {
+    font-weight: 400;
+}
+
+a {
+    color: #ff8787;
+    text-decoration: none;
+    background-color: transparent;
 }
 
 .main-content {
@@ -141,7 +142,7 @@
     width: auto;
     margin: 0.5rem;
     pointer-events: none;
-    max-width: 640px;
+    max-width: 420px;
 }
 
 .modal-checkbox {
@@ -180,16 +181,6 @@
 .mb-0 .my-0 {
     margin-bottom: 0 !important;
     font-size: 1rem;
-}
-
-h6 {
-    font-weight: 400;
-}
-
-a {
-    color: #ff8787;
-    text-decoration: none;
-    background-color: transparent;
 }
 
 .btn {

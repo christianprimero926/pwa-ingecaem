@@ -25,7 +25,7 @@
             <ion-label>
               Toggle Dark Theme
             </ion-label>
-            <ion-toggle (ionChange)="toggleDarkTheme()" id="themeToggle" slot="end"></ion-toggle>
+            <ion-toggle [ngModel]="darkMode" (ionChange)="change()"></ion-toggle>
           </ion-item>
         </ion-list>
     </div>
