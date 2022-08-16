@@ -29,7 +29,7 @@ export class HomePage {
   }
 
   // funcion para cambiar el modo desde el toggle
-  change() {
+  async change() {
     this.darkMode = !this.darkMode;
     document.body.classList.toggle('dark');
   }
