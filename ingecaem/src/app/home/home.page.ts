@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { AvatarService } from '../services/avatar.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -18,11 +18,51 @@ export class HomePage {
     private authService: AuthService,
     private router: Router,
     private loadingController: LoadingController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private renderer: Renderer2
   ) {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
     });
+  }
+
+  async toggleDarkTheme() {
+    // Query for the toggle that is used to change between themes
+    const toggle = document.querySelector('#themeToggle') as HTMLInputElement | null;
+    // console.log(toggle.addEventListener);
+
+
+
+    // Listen for the toggle check/uncheck to toggle the dark class on the <body>
+    toggle.addEventListener('ionChange', (ev) => {
+      document.body.classList.toggle('dark', (<CustomEvent>ev).detail.checked);
+      console.log((<CustomEvent>ev).detail.checked);
+    });
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    // console.log(prefersDark);
+
+    // Listen for changes to the prefers-color-scheme media query
+    prefersDark.addListener((e) => checkToggle(e.matches));
+    // console.log(prefersDark.addListener);
+
+
+
+
+
+    // Called when the app loads
+    function loadApp() {
+      checkToggle(prefersDark.matches);
+      // console.log('hola');
+    }
+
+    // Called by the media query to check/uncheck the toggle
+    function checkToggle(shouldCheck) {
+      toggle.checked = shouldCheck;
+      // console.log('hola');
+    }
+
+
   }
 
   async logout() {
@@ -57,5 +97,7 @@ export class HomePage {
       }
     }
   }
+
+
 
 }
