@@ -24,14 +24,18 @@ export class HomePage {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
     });
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    this.darkMode = prefersDark.matches;
   }
 
-  // funcion para cambiar el modo desde el toggle
-  async change() {
-    this.darkMode = !this.darkMode;
-    document.body.classList.toggle('dark');
+  toggleTheme(event) {
+    if (event.detail.checked) {
+      document.body.setAttribute('color-theme', 'dark');
+      document.querySelector('#theme-icon').setAttribute('name', 'moon');
+      // console.l]og(document.querySelector('ion-icon'));
+    } else {
+      document.body.setAttribute('color-theme', 'light');
+      document.querySelector('#theme-icon').setAttribute('name', 'sunny');
+    }
+
   }
 
   async logout() {

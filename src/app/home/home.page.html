@@ -21,11 +21,11 @@
         </ion-avatar>
         <ion-list>
           <ion-item lines="full">
-            <ion-icon slot="start" name="moon"></ion-icon>
+            <ion-icon id="theme-icon" slot="start" name="moon"></ion-icon>
             <ion-label>
               Toggle Dark Theme
             </ion-label>
-            <ion-toggle [ngModel]="darkMode" (ionChange)="change()"></ion-toggle>
+            <ion-toggle slot="end" (ionChange)="toggleTheme($event)"></ion-toggle>
           </ion-item>
         </ion-list>
     </div>
