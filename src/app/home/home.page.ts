@@ -16,8 +16,6 @@ export class HomePage {
 
   constructor(
     private avatarService: AvatarService,
-    private authService: AuthService,
-    private router: Router,
     private loadingController: LoadingController,
     private alertController: AlertController
   ) {
@@ -38,10 +36,7 @@ export class HomePage {
 
   }
 
-  async logout() {
-    await this.authService.logout();
-    this.router.navigateByUrl('/', { replaceUrl: true });
-  }
+
 
   async changeImage() {
     const image = await Camera.getPhoto({
