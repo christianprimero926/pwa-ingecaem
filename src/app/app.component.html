@@ -1,24 +1,15 @@
 <ion-app>
-    <ion-menu side="start" menuId="first" contentId="main">
-        <ion-header [translucent]="true">
-            <ion-toolbar color="red4">
-                <ion-buttons slot="end">
-                    <ion-button (click)="logout()">
-                        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-                    </ion-button>
-                </ion-buttons>
-                <ion-title>My profile</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content>
-            <ion-list>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main"></ion-router-outlet>
+    <ion-header [translucent]="true" *ngIf="isLogged">
+        <ion-toolbar color="red4">
+            <ion-buttons slot="end">
+                <ion-button (click)="logout()">
+                    <ion-icon slot="icon-only" name="log-out"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-title>My profile {{isLogged}}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+        <ion-router-outlet id="main"></ion-router-outlet>
+    </ion-content>
 </ion-app>

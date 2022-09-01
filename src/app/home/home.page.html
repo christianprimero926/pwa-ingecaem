@@ -1,21 +1,19 @@
-<ion-content class="ion-padding">
-    <div class="preview">
-        <ion-avatar (click)="changeImage()">
-            <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
-            <ng-template #placeholder_avatar>
-                <div class="fallback">
-                    <p>Select avatar</p>
-                </div>
-            </ng-template>
-        </ion-avatar>
-        <ion-list>
-          <ion-item lines="full">
+<div class="preview content-box">
+    <ion-avatar (click)="changeImage()">
+        <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
+        <ng-template #placeholder_avatar>
+            <div class="fallback">
+                <p>Select avatar</p>
+            </div>
+        </ng-template>
+    </ion-avatar>
+    <ion-list>
+        <ion-item lines="full">
             <ion-icon id="theme-icon" slot="start" name="moon"></ion-icon>
             <ion-label>
-              Toggle Dark Theme
+                Toggle Dark Theme
             </ion-label>
             <ion-toggle slot="end" (ionChange)="toggleTheme($event)"></ion-toggle>
-          </ion-item>
-        </ion-list>
-    </div>
-</ion-content>
+        </ion-item>
+    </ion-list>
+</div>
