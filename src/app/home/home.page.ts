@@ -14,11 +14,12 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 export class HomePage {
   profile = null;
   darkMode: boolean = true;
+  
 
   constructor(
     private avatarService: AvatarService,
     private loadingController: LoadingController,
-    private alertController: AlertController
+    private alertController: AlertController,    
   ) {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
@@ -36,8 +37,6 @@ export class HomePage {
     }
 
   }
-
-
 
   async changeImage() {
     const image = await Camera.getPhoto({
