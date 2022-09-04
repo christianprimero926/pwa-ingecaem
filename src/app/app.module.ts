@@ -15,6 +15,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { Capacitor } from '@capacitor/core';
 import { HeaderComponent } from './components/header/header.component';
 import { ComponentsModule } from './components/components.module';
+import { OrderPipe } from './pipes/order.pipe';
 
 @NgModule({
   declarations: [AppComponent],

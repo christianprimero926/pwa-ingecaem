@@ -1,0 +1,35 @@
+<ion-accordion-group>
+    <div *ngFor="let child of item.children">
+        <ion-accordion *ngIf="child.children; else row">
+
+
+
+
+            <ion-item slot="header">
+                <ion-label>{{child.title}}</ion-label>
+
+            </ion-item>
+
+            <!-- <ion-list slot="content" *ngFor="let children of child.children">
+
+                <ion-radio-group *ngIf="children.children; else row">
+                    <ion-item slot="start">
+                        <ion-label>{{children.title}}</ion-label>
+                        <ion-radio slot="start" color="success"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </ion-list> -->
+
+            <app-accordion slot="content" *ngIf="child.children" [item]="child"></app-accordion>
+
+        </ion-accordion>
+        <ng-template #row>
+            <ion-item>
+                <ion-label>{{child.title}} </ion-label>
+                <ion-radio slot="start" color="success"></ion-radio>
+            </ion-item>
+
+        </ng-template>
+
+    </div>
+</ion-accordion-group>

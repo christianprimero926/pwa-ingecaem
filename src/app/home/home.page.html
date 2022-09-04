@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-right-menu></app-right-menu>
+<app-side-menu-right></app-side-menu-right>
 <div class="preview content-box" id="content">
     <ion-avatar (click)="changeImage()">
         <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
@@ -29,5 +29,5 @@
             <ion-toggle slot="end" (ionChange)="toggleTheme($event)"></ion-toggle>
         </ion-item>
     </ion-list>
-     
+
 </div>

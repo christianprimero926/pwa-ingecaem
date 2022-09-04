@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController, NavController } from '@ionic/angular';
 import { AuthService } from './services/auth.service';
+// import menuData from '../assets/menu.json';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,14 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  // menu = menuData;
 
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private menuCtrl: MenuController,
+    private navCtrl: NavController
+  ) {
     // Query for the toggle that is used to change between themes
     // Use matchMedia to check the user preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -26,4 +33,6 @@ export class AppComponent {
       document.body.classList.toggle('dark', shouldAdd);
     }
   }
+
+  open(path){}
 }

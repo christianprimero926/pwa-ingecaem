@@ -23,11 +23,17 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
+  // {
+  //   path: 'menu',
+  //   loadChildren: () =>
+  //     import('./components/right-menu/right-menu.module').then((m) => m.RightMenuPageModule),
+  // },
   {
-    path: 'menu',
+    path: 'accordion/:path',
     loadChildren: () =>
-      import('./components/right-menu/right-menu.module').then((m) => m.RightMenuPageModule),
+      import('./modules/details/details.module').then(m => m.DetailsPageModule)
   }
+
 
 
   // {
