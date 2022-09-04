@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-side-menu-right',
-  templateUrl: './side-menu-right.component.html',
-  styleUrls: ['./side-menu-right.component.scss'],
+  selector: 'app-right-menu',
+  templateUrl: './right-menu.page.html',
+  styleUrls: ['./right-menu.page.scss'],
 })
-export class SideMenuRightComponent implements OnInit {
+export class RightMenuPage implements OnInit {
 
   pages = [
     { title: 'Main', url: '#', icon: 'home' },
@@ -24,10 +24,12 @@ export class SideMenuRightComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   async logout() {
     await this.authService.logout();
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
+
 }

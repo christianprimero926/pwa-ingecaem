@@ -10,21 +10,25 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },{
     path: '',
     loadChildren: () =>
       import('./auth/login.module').then((m) => m.LoginPageModule),
     ...canActivate(redirectLoggedInToHome)
-  },{
+  },
+  {
     path: 'home',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
+  {
+    path: 'menu',
+    loadChildren: () =>
+      import('./components/right-menu/right-menu.module').then((m) => m.RightMenuPageModule),
+  }
+
 
   // {
   //   path: '**',

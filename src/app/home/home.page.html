@@ -1,6 +1,6 @@
 <app-header></app-header>
-<app-side-menu-right></app-side-menu-right>
-<div class="preview content-box">
+<app-right-menu></app-right-menu>
+<div class="preview content-box" id="content">
     <ion-avatar (click)="changeImage()">
         <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
         <ng-template #placeholder_avatar>
@@ -10,6 +10,17 @@
         </ng-template>
     </ion-avatar>
     <ion-list>
+        <ion-list>
+
+
+
+
+
+            <ion-item button (click)="logout()">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>Cerrar Sesion</ion-label>
+            </ion-item>
+          </ion-list>
         <ion-item lines="full">
             <ion-icon id="theme-icon" slot="start" name="moon"></ion-icon>
             <ion-label>
@@ -18,17 +29,5 @@
             <ion-toggle slot="end" (ionChange)="toggleTheme($event)"></ion-toggle>
         </ion-item>
     </ion-list>
-    <div class="ion-page" id="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Inbox</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">
-          <ion-button expand="block" (click)="openMenu()">Open Menu</ion-button>
-        </ion-content>
-      </div>
+     
 </div>
