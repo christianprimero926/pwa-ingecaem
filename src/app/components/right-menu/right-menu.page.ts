@@ -10,11 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RightMenuPage implements OnInit {
 
   pages = [
-    { title: 'Main', url: '#', icon: 'home' },
+    {
+      title: 'Main',
+      url: '',
+      icon: 'home'
+    },
     {
       title: 'Pantalla y Accesibilidad',
       children: [
-        {title: 'Modo Oscuro', icon: 'moon', url: '#'}
+        { title: 'Modo Oscuro', icon: 'moon', url: '#' }
       ]
     }
   ]
