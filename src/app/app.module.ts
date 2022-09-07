@@ -6,16 +6,22 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { getApp, initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth, initializeAuth, indexedDBLocalPersistence } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideAuth, getAuth, initializeAuth, indexedDBLocalPersistence } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { Capacitor } from '@capacitor/core';
-import { HeaderComponent } from './components/header/header.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
+// import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ComponentsModule } from './components/components.module';
-import { OrderPipe } from './pipes/order.pipe';
+
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,8 +29,12 @@ import { OrderPipe } from './pipes/order.pipe';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    IonicStorageModule.forRoot(),
     ComponentsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => {
       if (Capacitor.isNativePlatform()) {
         return initializeAuth(getApp(), {
@@ -43,7 +53,10 @@ import { OrderPipe } from './pipes/order.pipe';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    // { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -13,36 +13,48 @@ export class SideMenuRightComponent implements OnInit {
   @Input() parent = '';
   asc = true;
 
+
   pages = [
     {
+      id: '1',
       alias: 'Home',
       title: 'Main',
       url: '',
       icon: 'home'
     },
     {
+      id: '2',
       alias: 'Screen',
       title: 'Pantalla y Accesibilidad',
       icon: 'moon',
       children: [
         {
+          id: '2.1',
           title: 'Modo Oscuro',
           icon: 'moon',
           url: '#',
-          children: [
-            {
-              title: 'activado',
-            },
-            {
-              title: 'desactivado',
-            },
-            {
-              title: 'automatico',
-            }
+          alias: 'dark_mode',
+          // children: [
+          //   {
+          //     id: '2.1.1',
+          //     title: 'Activado',
+          //     radio: true,
+          //   },
+          //   {
+          //     id: '2.1.2',
+          //     title: 'Desactivado',
+          //     radio: true,
+          //   },
+          //   {
+          //     id: '2.1.3',
+          //     title: 'Automatico',
+          //     radio: true,
+          //     alias: 'automatic_dark_theme',
+          //   }
 
 
 
-          ]
+          // ]
         }
       ]
     }, {
@@ -78,9 +90,28 @@ export class SideMenuRightComponent implements OnInit {
   // }
 
   selectEvent(alias) {
-    if (alias === 'logout') {
-      this.logout();
+    switch (alias) {
+      case 'logout':
+        this.logout();
+        break;
+      case 'automatic_dark_theme':
+        this.toggleTheme(event);
+        break;
+      default:
+        break;
     }
+  }
+
+  toggleTheme(event) {
+    if (event.detail.checked) {
+      document.body.setAttribute('color-theme', 'dark');
+      document.querySelector('#theme-icon').setAttribute('name', 'moon');
+      // console.l]og(document.querySelector('ion-icon'));
+    } else {
+      document.body.setAttribute('color-theme', 'light');
+      document.querySelector('#theme-icon').setAttribute('name', 'sunny');
+    }
+
   }
 
   async logout() {

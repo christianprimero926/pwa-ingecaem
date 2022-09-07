@@ -24,15 +24,30 @@ const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin)
   },
   // {
+  //   path: 'home',
+  //   loadChildren: () =>
+  //     import('./home/home.module').then((m) => m.HomePageModule),
+  //   ...canActivate(redirectUnauthorizedToLogin)
+  // },
+  // {
   //   path: 'menu',
   //   loadChildren: () =>
   //     import('./components/right-menu/right-menu.module').then((m) => m.RightMenuPageModule),
   // },
+  // {
+  //   path: 'accordion/:path',
+  //   loadChildren: () =>
+  //     import('./modules/details/details.module').then(m => m.DetailsPageModule)
+  // },
   {
-    path: 'accordion/:path',
-    loadChildren: () =>
-      import('./modules/details/details.module').then(m => m.DetailsPageModule)
+    path: 'dashboard',
+    loadChildren: () => import('./pages/operator/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
+
 
 
 

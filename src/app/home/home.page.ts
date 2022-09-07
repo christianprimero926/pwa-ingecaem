@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,14 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class HomePage {
   profile = null;
-  darkMode: boolean = true;
-  
+  // darkMode: boolean = true;
+
 
   constructor(
     private avatarService: AvatarService,
     private loadingController: LoadingController,
-    private alertController: AlertController,    
+    private alertController: AlertController,
+    private firestore: FirestoreService
   ) {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
@@ -64,6 +66,10 @@ export class HomePage {
         await alert.present();
       }
     }
+  }
+
+  getRoles() {
+    this.firestore.readCollection();
   }
 
 

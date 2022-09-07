@@ -5,7 +5,14 @@ import {
   signInWithEmailAndPassword,
   signOut
 } from '@angular/fire/auth';
-import { isNullOrUndefined } from 'util';
+import { Plugins } from '@capacitor/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+
+const { Storage } = Plugins;
+
+const TOKEN_KEY = 'user_token';
 
 export interface User {
   name: string;
@@ -16,8 +23,37 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
+  user: Observable<any>;
+  authState = new BehaviorSubject(null);
 
-  constructor(private auth: Auth) { }
+  // private currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
+  constructor(private auth: Auth,
+    private authFirebase: AngularFireAuth
+  ) {
+
+  }
+
+  // signIn(credentials){
+  //   let email = credentials.email;
+  //   let password = credentials.password;
+  //   let user = null;
+
+  //   if (email === 'admin' && password === 'admin') {
+  //     user = {email, role: 'ADMIN'};
+  //   } else if(email === 'user' && password === 'user') {
+  //     user = {email, role: 'ADMIN'};
+  //   }
+  // }
+
+  async getUserId() {
+    const user = await this.authFirebase.currentUser;
+    return user.uid;
+  }
+
+  stateUser(){
+    return this.authFirebase.authState;
+  }
+
 
   async register({ email, password }) {
     try {
@@ -49,7 +85,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
-    return signOut(this.auth);
+    // return signOut(this.auth);
+    this.authFirebase.signOut();
   }
 
   getCurrentUser() {

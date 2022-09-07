@@ -1,12 +1,9 @@
 <ion-accordion-group>
     <div *ngFor="let child of item.children">
         <ion-accordion *ngIf="child.children; else row">
-
-
-
-
             <ion-item slot="header">
                 <ion-label>{{child.title}}</ion-label>
+                <ion-icon *ngIf="child.icon" [name]="child.icon" slot="start"></ion-icon>
 
             </ion-item>
 
@@ -21,15 +18,71 @@
             </ion-list> -->
 
             <app-accordion slot="content" *ngIf="child.children" [item]="child"></app-accordion>
-
         </ion-accordion>
+        <ion-list *ngIf="child.alias === 'dark_mode'">
+            {{child.alias}}
+            <ion-radio-group value="automatic">
+                <ion-list-header>
+                    {{child.id}}
+                    <ion-label>{{child.title}}</ion-label>
+                    <ion-icon [name]="child.icon" slot="start"></ion-icon>
+                </ion-list-header>
+
+                <ion-item>
+                    <ion-label>Activado</ion-label>
+                    <ion-radio slot="start" color="red4" value="enable"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Desativado</ion-label>
+                    <ion-radio slot="start" color="red4" value="disable"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Automatico</ion-label>
+                    <ion-radio slot="start" color="red4" value="automatic"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-list>
         <ng-template #row>
-            <ion-item>
-                <ion-label>{{child.title}} </ion-label>
-                <ion-radio slot="start" color="success"></ion-radio>
-            </ion-item>
+
+            <!-- <ion-radio-group *ngIf="child.radio">
+                <ion-item *ngFor="let options of options">
+                    <ion-label>{{child.title}}</ion-label>
+                    <ion-radio value="child.id" slot="start" color="red4" (ionSelect)="selectEvent(child.id)"></ion-radio>
+                </ion-item>
+
+
+            </ion-radio-group> -->
+
+
+
+
+            <!-- <ion-item *ngIf="child.radio === false">
+
+                <ion-label>{{child.title}}</ion-label>
+                <ion-radio slot="start" color="success" *ngIf="child.radio"></ion-radio>
+            </ion-item> -->
+
+
 
         </ng-template>
+
+
+
+
+
+
+
+
+        <!-- <ion-radio-group *ngFor="let option of options">
+            <ion-item *ngIf="child.option === 'dark_mode'">
+                <ion-label>{{option.title}}</ion-label>
+                <ion-radio value="option.id" slot="start" color="red4" (ionSelect)="selectEvent(option.id)"></ion-radio>
+            </ion-item>
+
+
+        </ion-radio-group> -->
 
     </div>
 </ion-accordion-group>

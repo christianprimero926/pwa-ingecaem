@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RightMenuPageModule } from './right-menu/right-menu.module';
 import { OrderModule } from 'ngx-order-pipe';
 import { AccordionComponent } from '../layouts/accordion/accordion.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AccordionComponent } from '../layouts/accordion/accordion.component';
     IonicModule,
     RouterModule,
     RightMenuPageModule,
-    OrderModule
+    OrderModule,
+    FormsModule
   ]
 })
 export class ComponentsModule { }

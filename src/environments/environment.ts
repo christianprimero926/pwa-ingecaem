@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  firebase: {
+  firebaseConfig: {
     projectId: 'pwa-ingecaem',
     appId: '1:225926180205:web:18d6a8c8916156446f7e64',
     storageBucket: 'pwa-ingecaem.appspot.com',
