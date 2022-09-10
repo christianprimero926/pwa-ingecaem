@@ -9,18 +9,46 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+
 /* Core CSS required for Ionic components to work properly */
+
 @import "~@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
+
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
+
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+.ion-page {
+    display: initial !important;
+}
+
+ion-toast.success-toast {
+    --background: #d4edda;
+    --color: #155724;
+}
+
+ion-toast.success-toast::part(message) {
+    // font-style: italic;
+}
+
+ion-toast.success-toast::part(button) {
+    // border-left: 1px solid #c3e6cb;
+    color: #155724;
+    // font-size: 15px;
+}
+
+ion-loading.custom-loading {
+    --background: #e3edff;
+    --spinner-color: #1c6dff;
+    color: #1c6dff;
+}

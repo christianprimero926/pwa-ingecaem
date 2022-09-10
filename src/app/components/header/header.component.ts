@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { AvatarService } from 'src/app/services/avatar.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Observable, of } from 'rxjs';
+import { UserService } from '../../services/User.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -11,19 +14,40 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  email = this.authService.getCurrentUser().user.email;
+  // user$: Observable<any> = of(null);
+  // email = this.authService.getCurrentUser().user.email;
+  profile = null;
+  user$: Observable<any> = of(null);
 
   constructor(
+    private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private menu: MenuController,
     private avatarService: AvatarService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-  ) { }
+  ) {
+    this.avatarService.getUserProfile().subscribe((data) => {
+      this.profile = data;
+    });
+  }
 
   ngOnInit() {
 
+  }
+
+  getAvatar(){
+    this.userService.getUser.pipe(take(2)).subscribe(userData => {
+      this.userService.setUser(userData);
+      if (userData) {
+        this.router.navigateByUrl('/home', { replaceUrl: true });
+        localStorage.setItem('currentUser', userData);
+      } else {
+        // this.alert.showAlert('Login failed', 'Please try again!!');
+      }
+
+    })
   }
 
   async logout() {

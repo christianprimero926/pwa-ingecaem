@@ -1,4 +1,71 @@
-<ion-menu side="end" contentId="content">
+<ion-popover trigger="popover-button" [dismissOnSelect]="true">
+    <ng-template>
+        <ion-content>
+            <ion-list>
+
+                <ion-item [button]="true" [detail]="false">
+
+                    <ion-avatar class="scale_1" title="Cuenta" slot="start">
+                        <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
+                        <ng-template #placeholder_avatar>
+                            <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+                        </ng-template>
+                    </ion-avatar>
+                    <ion-label>
+                        {{ email }}
+                    </ion-label>
+
+                </ion-item>
+                <!-- <ion-item [button]="true" id="nested-trigger">More options...</ion-item>
+
+                <ion-popover trigger="nested-trigger" [dismissOnSelect]="true" side="end">
+                    <ng-template>
+                        <ion-content>
+                            <ion-list>
+                                <ion-item [button]="true" [detail]="false">Nested option</ion-item>
+                            </ion-list>
+                        </ion-content>
+                    </ng-template>
+                </ion-popover> -->
+
+                <ion-item button (click)="logout()">
+                    <ion-icon slot="start" name="log-out"></ion-icon>
+                    <ion-label>Cerrar Sesion</ion-label>
+                </ion-item>
+
+
+            </ion-list>
+        </ion-content>
+    </ng-template>
+</ion-popover>
+
+
+<!-- <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+    <ng-template>
+        <ion-content *ngFor="let item of pages">
+            <ion-list *ngIf="item.children?.length < 1">
+                <ion-item buttton [routerLink]="item.url" [button]="true" [detail]="false" (click)="selectEvent(item.alias)">
+                    <ion-icon [name]="item.icon" slot="start"></ion-icon>
+                    <ion-label>
+                        {{ item.title }}
+                    </ion-label>
+                </ion-item>
+                <ion-item [button]="true" [detail]="false">Option 2</ion-item>
+
+                <ion-item buttton [button]="true" id="children" *ngIf="item.children?.length > 0">
+                    <ion-icon [name]="item.icon" slot="start"></ion-icon>
+                    <ion-label>{{ item.title }}</ion-label>
+                </ion-item>
+
+                <app-accordion [item]="item" slot="content"></app-accordion>
+
+
+            </ion-list>
+        </ion-content>
+    </ng-template>
+</ion-popover> -->
+
+<!-- <ion-menu side="end" contentId="content">
     <ion-header>
         <ion-toolbar color="red4">
             <ion-title>Menu</ion-title>
@@ -23,9 +90,9 @@
                 </ion-item>
                 <app-accordion [item]="item" slot="content"></app-accordion>
 
-                <!-- <app-accordion slot="content" [item]="item"></app-accordion> -->
+                <app-accordion slot="content" [item]="item"></app-accordion>
 
             </ion-accordion>
         </ion-accordion-group>
     </ion-content>
-</ion-menu>
+</ion-menu> -->

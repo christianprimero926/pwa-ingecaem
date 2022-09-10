@@ -6,7 +6,6 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from '../components/components.module';
-import { RightMenuPageRoutingModule } from '../components/right-menu/right-menu-routing.module';
 
 
 @NgModule({
@@ -15,8 +14,7 @@ import { RightMenuPageRoutingModule } from '../components/right-menu/right-menu-
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    ComponentsModule,
-    RightMenuPageRoutingModule
+    ComponentsModule
   ],
   declarations: [HomePage]
 })

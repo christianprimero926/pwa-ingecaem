@@ -1,19 +1,10 @@
 import { Injectable } from '@angular/core';
-import {
-  Auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut
-} from '@angular/fire/auth';
-import { Plugins } from '@capacitor/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-
-const { Storage } = Plugins;
-
-const TOKEN_KEY = 'user_token';
-
+import { take } from 'rxjs/operators';
+import { UserService } from './User.service';
+import { Router } from '@angular/router';
+import { AlertsService } from './Alerts.service';
 export interface User {
   name: string;
   role: string;
@@ -27,66 +18,33 @@ export class AuthService {
   authState = new BehaviorSubject(null);
 
   // private currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
-  constructor(private auth: Auth,
-    private authFirebase: AngularFireAuth
-  ) {
+  constructor(
+    private userService: UserService,
+    private authFirebase: AngularFireAuth,
+    private router: Router,
+    private alert: AlertsService
+  ) { }
 
-  }
+  signIn({ email, password }): Promise<any> {
+    return this.authFirebase.signInWithEmailAndPassword(email, password).then(data => {
+      this.userService.getUserById(data.user.uid).pipe(take(2)).subscribe(userData => {
+        this.userService.setUser(userData);
+        if (userData) {
+          this.router.navigateByUrl('/home', { replaceUrl: true });
+          // localStorage.setItem('currentUser', userData);
+        } else {
+          this.alert.showAlert('Login failed', 'Please try again!!');
+        }
 
-  // signIn(credentials){
-  //   let email = credentials.email;
-  //   let password = credentials.password;
-  //   let user = null;
-
-  //   if (email === 'admin' && password === 'admin') {
-  //     user = {email, role: 'ADMIN'};
-  //   } else if(email === 'user' && password === 'user') {
-  //     user = {email, role: 'ADMIN'};
-  //   }
-  // }
-
-  async getUserId() {
-    const user = await this.authFirebase.currentUser;
-    return user.uid;
-  }
-
-  stateUser(){
-    return this.authFirebase.authState;
-  }
-
-
-  async register({ email, password }) {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      return user;
-    } catch (e) {
+      })
+    }).catch(err => {
+      console.error(err);
       return null;
-    }
-  }
-
-  async login({ email, password }) {
-    try {
-      const user = await signInWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      let currentUserData = JSON.stringify(user)
-      localStorage.setItem('currentUser', currentUserData); // BAD
-      return user;
-    } catch (e) {
-      return null;
-    }
+    });
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    // return signOut(this.auth);
-    this.authFirebase.signOut();
+    return this.authFirebase.signOut();
   }
 
   getCurrentUser() {

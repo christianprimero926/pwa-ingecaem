@@ -21,16 +21,22 @@ import { ComponentsModule } from './components/components.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AdminModule } from './pages/admin/admin.module';
+import { CreateRolComponent } from './pages/admin/roles/create-rol/create-rol.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    CreateRolComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     ComponentsModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,

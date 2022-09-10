@@ -1,8 +1,10 @@
 <app-header></app-header>
+<app-side-menu-left></app-side-menu-left>
 <app-side-menu-right></app-side-menu-right>
-<div class="preview content-box" id="content">
+
+<div class="preview content-box" id="content" *ngIf="(user$ | async) as user">
     <ion-avatar (click)="changeImage()">
-        <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
+        <img *ngIf="user; else placeholder_avatar" [src]="user.imageUrl" />
         <ng-template #placeholder_avatar>
             <div class="fallback">
                 <p>Select avatar</p>

@@ -1,26 +1,55 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="red4">
-        <ion-chip slot="end" (click)="openMenu()">
+
+        <ion-buttons slot="start">
+            <ion-button expand="block" (click)="openMenu()">
+                <ion-icon slot="icon-only" name="apps-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <!-- <ion-buttons slot="start">
+
+            <ion-button expand="block" (click)="openMenu()">
+                <ion-icon slot="start" name="apps-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
+
+        <ion-avatar button class="scale" title="Cuenta" slot="end" side="end" id="popover-button">
+            <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
+            <ng-template #placeholder_avatar>
+                <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+            </ng-template>
+        </ion-avatar>
+        <!-- <ion-chip slot="end" side="end" id="popover-button">
             <ion-avatar>
-              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+                <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
+                <ng-template #placeholder_avatar>
+                    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+                </ng-template>
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
             </ion-avatar>
             <ion-label>{{email}}</ion-label>
-          </ion-chip>
+        </ion-chip> -->
+        <!-- <ion-chip slot="end" (click)="openMenu()">
+            <ion-avatar>
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+            </ion-avatar>
+            <ion-label>{{email}}</ion-label>
+        </ion-chip> -->
         <!-- <ion-buttons slot="end">
             <ion-button expand="block" (click)="openMenu()">
                 <ion-avatar>
                     <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
-                   
+
                     <ng-template #placeholder_avatar></ng-template>
                 </ion-avatar>
             </ion-button>
         </ion-buttons> -->
-        
+
         <!-- <ion-buttons slot="end">
             <ion-button expand="block" (click)="openMenu()">
                 <ion-icon slot="icon-only" name="menu"></ion-icon>
-            </ion-button>            
+            </ion-button>
         </ion-buttons> -->
-        <ion-title>My profile  {{ profile }}</ion-title>
+        <ion-title>My profile</ion-title>
     </ion-toolbar>
 </ion-header>

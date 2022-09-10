@@ -1,77 +1,69 @@
 <ion-app>
-    <ion-content class="main-content">
-        <div class="container">
-            <div id="left"></div>
-            <div id="right" class="right">
-                <div class="mx-auto app-login-box col-md-8">
-                    <div class="modal-dialog w-100 mx-auto">
-                        <form (ngSubmit)="login()" [formGroup]="credentials">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <div class="modal-title">
-                                        <h4>
-                                            <div>Welcome back,</div>
-                                            <span>Please sign in to your account below.</span>
-                                        </h4>
-                                    </div>
+  <ion-content class="main-content">
+    <div class="container">
+      <div id="left"></div>
+      <div id="right" class="right">
+        <div class="mx-auto app-login-box col-md-8">
+          <div class="modal-dialog w-100 mx-auto">
+            <form (ngSubmit)="login()" [formGroup]="credentials">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="modal-title">
+                    <h4>
+                      <div>Welcome back,</div>
+                      <span>Please sign in to your account below.</span>
+                    </h4>
+                  </div>
 
-                                    <ion-item fill="solid" class="ion-margin-bottom">
-                                        <ion-input type="email" placeholder="Enter email..." formControlName="email"></ion-input>
-                                        <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
-                                    </ion-item>
-                                    <p></p>
+                  <ion-item fill="solid" class="ion-margin-bottom">
+                    <ion-input type="email" placeholder="Enter email..." formControlName="email"></ion-input>
+                    <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">
+                      Email is invalid
+                    </ion-note>
+                  </ion-item>
+                  <p></p>
 
-                                    <ion-item fill="solid" class="ion-margin-bottom">
-                                        <ion-input type="password" placeholder="Enter password..." formControlName="password"></ion-input>
-                                        <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 6 characters</ion-note>
-                                    </ion-item>
+                  <ion-item fill="solid" class="ion-margin-bottom">
+                    <ion-input type="password" placeholder="Enter password..." formControlName="password"></ion-input>
+                    <ion-note slot="error" *ngIf="(password.dirty || password.touched) &&
+                      password.errors">
+                      Password needs to be 6 characters
+                    </ion-note>
+                  </ion-item>
 
-
-                                    <div class="modal-checkbox">
-                                        <label class="custom-radio-checkbox">
-                                        <!-- Input oculto -->
-                                        <input class="custom-radio-checkbox__input" type="checkbox" name="genero" value="hombre">
-                                        <!-- Imagen en sustitucion -->
-                                        <span class="custom-radio-checkbox__show custom-radio-checkbox__show--checkbox"></span>
-                                        <!-- Texto -->
-                                        <span class="custom-radio-checkbox__text">Keep me logged in</span>
-                                    </label>
-
-                                    </div>
-
-                                    <!-- <div class="divider"></div>
-                                    <h6 class="mb-0">No account?
-                                        <a href="" class="text-primary">Sign up now</a>
-                                    </h6> -->
-
-
-
-
-                                </div>
-                                <div class="modal-footer clearfix">
-
-                                    <div class="float-left">
-                                        <a href="" class="btn-lg btn btn-link">Recover Password</a>
-                                    </div>
-                                    <div class="float-right">
-
-                                        <ion-button class="btn" color="red4" expand="block" type="submit" [disabled]="!credentials.valid">Login to Dashboard</ion-button>
-                                        <!-- <ion-button expand="full" type="button" (click)="register()">Create Account</ion-button> -->
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                  <div class="modal-checkbox">
+                    <label class="custom-radio-checkbox">
+                      <!-- Input oculto -->
+                      <input class="custom-radio-checkbox__input" type="checkbox" name="genero" value="hombre" />
+                      <!-- Imagen en sustitucion -->
+                      <span class="custom-radio-checkbox__show
+                        custom-radio-checkbox__show--checkbox"></span>
+                      <!-- Texto -->
+                      <span class="custom-radio-checkbox__text">
+                        Keep me logged in
+                      </span>
+                    </label>
+                  </div>
                 </div>
 
-            </div>
-
-
+                <div class="modal-footer clearfix">
+                  <div class="float-left">
+                    <a href="" class="btn-lg btn btn-link">
+                      Recover Password
+                    </a>
+                  </div>
+                  <div class="float-right">
+                    <ion-button class="btn" color="red4" expand="block" type="submit" [disabled]="!credentials.valid">
+                      Login to Dashboard
+                    </ion-button>
+                    <!-- <ion-button expand="full" type="button" (click)="register()">Create Account</ion-button> -->
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-    </ion-content>
-
+      </div>
+    </div>
+  </ion-content>
 </ion-app>

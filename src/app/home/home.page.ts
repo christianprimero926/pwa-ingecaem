@@ -1,10 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AvatarService } from '../services/avatar.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { FirestoreService } from '../services/firestore.service';
+import { UserService } from '../services/User.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +14,27 @@ import { FirestoreService } from '../services/firestore.service';
   styleUrls: ['home.page.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomePage {
+export class HomePage implements OnInit {
   profile = null;
+  user$: Observable<any> = of(null);
   // darkMode: boolean = true;
 
 
   constructor(
+    private userService: UserService,
     private avatarService: AvatarService,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private firestore: FirestoreService
   ) {
+    // console.log(JSON.parse(localStorage.getItem('currentUser')));
     this.avatarService.getUserProfile().subscribe((data) => {
+      // console.log(data);
       this.profile = data;
     });
+  }
+  ngOnInit(): void {
+    this.user$ = this.userService.getUser;
   }
 
   toggleTheme(event) {
@@ -69,7 +78,7 @@ export class HomePage {
   }
 
   getRoles() {
-    this.firestore.readCollection();
+    // this.firestore.readCollection();
   }
 
 
