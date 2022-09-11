@@ -28,27 +28,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-.ion-page {
-    display: initial !important;
-}
 
-ion-toast.success-toast {
-    --background: #d4edda;
-    --color: #155724;
-}
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/themes/dark.css';
 
-ion-toast.success-toast::part(message) {
-    // font-style: italic;
-}
-
-ion-toast.success-toast::part(button) {
-    // border-left: 1px solid #c3e6cb;
-    color: #155724;
-    // font-size: 15px;
-}
-
-ion-loading.custom-loading {
-    --background: #e3edff;
-    --spinner-color: #1c6dff;
-    color: #1c6dff;
-}
+@import 'theme/interactions.scss';
+@import 'theme/content.scss';

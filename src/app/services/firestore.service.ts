@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class FirestoreService {
 
+
+
   constructor(private firestore: AngularFirestore) { }
 
   createDoc(data: any, path: string, id: string) {
@@ -14,14 +16,18 @@ export class FirestoreService {
     return collection.doc(id).set(data);
   }
 
-
-  deleteDocument() {
-
+  getCollection<type>(path: string) {
+    const collection = this.firestore.collection<type>(path);
+    return collection.valueChanges();
   }
 
   getId() {
     return this.firestore.createId();
   }
+
+
+  deleteDocument() { }
+  editDocument() { }
 
   getDocument() {
     console.log('Leer collecion');
@@ -30,7 +36,7 @@ export class FirestoreService {
     });
   }
 
-  editDocument() {
 
-  }
+
+
 }

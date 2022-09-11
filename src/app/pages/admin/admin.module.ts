@@ -4,19 +4,20 @@ import { CreateRolComponent } from './roles/create-rol/create-rol.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../../components/components.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 
 @NgModule({
   declarations: [
-    // CreateRolComponent
+    CreateRolComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentsModule
-
+    ComponentsModule,
+    NgxDatatableModule
   ]
 })
 export class AdminModule { }

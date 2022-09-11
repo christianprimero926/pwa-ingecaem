@@ -9,4 +9,5 @@ export interface UserI {
 export interface RoleI {
   rol_id: number;
   rol_desc: string;
+  uid: string;
 }

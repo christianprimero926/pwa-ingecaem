@@ -28,7 +28,7 @@ import { CreateRolComponent } from './pages/admin/roles/create-rol/create-rol.co
 @NgModule({
   declarations: [
     AppComponent,
-    CreateRolComponent
+    // CreateRolComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +36,10 @@ import { CreateRolComponent } from './pages/admin/roles/create-rol/create-rol.co
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     ComponentsModule,
-
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AdminModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => {
       if (Capacitor.isNativePlatform()) {
