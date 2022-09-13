@@ -1,3 +1,4 @@
+import { CreateUserComponent } from './users/create-user/create-user.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateRolComponent } from './roles/create-rol/create-rol.component';
@@ -8,9 +9,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 
+
 @NgModule({
   declarations: [
-    CreateRolComponent
+    CreateRolComponent,
+    CreateUserComponent
   ],
   imports: [
     CommonModule,

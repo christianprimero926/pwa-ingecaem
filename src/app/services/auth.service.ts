@@ -5,6 +5,7 @@ import { take } from 'rxjs/operators';
 import { UserService } from './User.service';
 import { Router } from '@angular/router';
 import { AlertsService } from './Alerts.service';
+import { UserI } from '../models/user.model';
 export interface User {
   name: string;
   role: string;
@@ -24,6 +25,20 @@ export class AuthService {
     private router: Router,
     private alert: AlertsService
   ) { }
+
+  async register(newUser: UserI) {
+    try {
+      const user = await this.authFirebase.createUserWithEmailAndPassword(
+        newUser.email,
+        newUser.password
+      ).then(() => {
+        this.userService.createUser(newUser);
+      });
+      // return user;
+    } catch (e) {
+      return null;
+    }
+  }
 
   signIn({ email, password }): Promise<any> {
     return this.authFirebase.signInWithEmailAndPassword(email, password).then(data => {

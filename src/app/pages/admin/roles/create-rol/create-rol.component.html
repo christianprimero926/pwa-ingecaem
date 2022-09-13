@@ -6,44 +6,39 @@
     <div class="preview content-box" id="role">
         <ion-card>
             <ion-item>
-                <ion-label>ID del Rol:</ion-label>
+                <ion-label position="floating">Id del Rol:</ion-label>
                 <ion-input [(ngModel)]="dataIn.rol_id"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label>Descripcion del Rol:</ion-label>
+                <ion-label position="floating">Descripcion del Rol:</ion-label>
                 <ion-input [(ngModel)]="dataIn.rol_desc"></ion-input>
             </ion-item>
         </ion-card>
-        <ion-button (click)="createNewRol()">
+        <ion-button (click)="createNewRol()" color="red4">
             Crear
         </ion-button>
-
-
-
     </div>
-    <div>
-        <ion-card *ngFor="let r of roles">
-            <ion-item>
-                <ion-label>{{r.rol_desc}}</ion-label>
-
-            </ion-item>
-        </ion-card>
-
+    <div *ngIf=" roles !== []">
+        <ngx-datatable class="table-box" [rows]="roles" [ngClass]="tableStyle" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
+            <ngx-datatable-column name="rolDesc">
+                <ng-template let-column="column" ngx-datatable-header-template> {{ columnDesc }} </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="actions">
+                <ng-template let-column="column" ngx-datatable-header-template> {{ columnAction }} </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div style="text-align:center">
+                        <ion-button size="small" color="red4">
+                            <ion-icon slot="icon-only" size="small" name="create-sharp"></ion-icon>
+                        </ion-button>
+                        <ion-button size="small" color="red4">
+                            <ion-icon slot="icon-only" size="small" name="trash"></ion-icon>
+                        </ion-button>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
     </div>
-
-    <ngx-datatable class="table-box" [rows]="parsed" [ngClass]="tableStyle" [rowHeight]="'auto'" [headerHeight]="50" [columnMode]="'force'">
-        <ngx-datatable-column name="rol_desc"></ngx-datatable-column>
-        <!-- <ngx-datatable-column name="gender"></ngx-datatable-column> -->
-        <ngx-datatable-column name="Acciones" [sortable]="false">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <ion-button size="small">
-                    <ion-icon slot="icon-only" size="small" name="trash"></ion-icon>
-                </ion-button>
-                <ion-button size="small">
-                    <ion-icon slot="icon-only" size="small" name="create-sharp"></ion-icon>
-                </ion-button>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-
 </ion-content>

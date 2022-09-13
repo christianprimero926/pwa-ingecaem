@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CreateRolComponent } from './pages/admin/roles/create-rol/create-rol.component';
+import { CreateUserComponent } from './pages/admin/users/create-user/create-user.component';
 import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
@@ -45,6 +46,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/operator/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   { path: 'roles', component: CreateRolComponent },
+  { path: 'users', component: CreateUserComponent },
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)

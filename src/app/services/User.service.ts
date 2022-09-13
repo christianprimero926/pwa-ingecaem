@@ -6,18 +6,20 @@ import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from './auth.service';
 import { Auth } from '@angular/fire/auth';
+import { UserI } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   userWatcher: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  PATH = 'Users';
 
   constructor(
-    private firestore: Firestore,
     private auth: Auth,
     private authFirebase: AngularFireAuth,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private firestore: AngularFirestore
     ) { }
 
   getUserData() {
@@ -30,8 +32,8 @@ export class UserService {
     return this.authFirebase.authState;
   }
 
-  getUserById(uid: string): Observable<any> {
-    var docRef = this.afs.collection('users').doc<any>(uid);
+  getUserById(uid: string): Observable<UserI> {
+    var docRef = this.afs.collection('users').doc<UserI>(uid);
     const user$ = docRef.get().pipe(
       map( (doc) => {
         if (doc.exists) {
@@ -74,6 +76,14 @@ export class UserService {
     } else {
       return null;
     }
+  }
+
+  createUser(user: UserI){
+        this.firestore.collection(this.PATH).doc().set(user)
+
+
+
+
   }
 
   // userRefresh(): Observable<any>{
