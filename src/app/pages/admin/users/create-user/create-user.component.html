@@ -2,39 +2,50 @@
     <div class="preview content-box" id="role">
         <ion-card>
             <ion-item>
-                <ion-label position="floating">Nombre:</ion-label>
-                <!-- <ion-input [(ngModel)]="newUser.name"></ion-input> -->
+                <ion-label position="floating">{{InputForms.USER_FORM_CODE}}</ion-label>
+                <ion-input [(ngModel)]="dataIn.name"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label position="floating">Descripcion del Rol:</ion-label>
-                <!-- <ion-input [(ngModel)]="dataIn.rol_desc"></ion-input> -->
-            </ion-item>
-            <ion-item>
-                <ion-label>{{InputForms.INPUT_ROL}}</ion-label>
-                <ion-select [(ngModel)]="newUser.rol" [interfaceOptions]="customAlertOptions" interface="alert" [placeholder]="InputForms.SELECT_ROL">
+                <ion-label>{{InputForms.USER_FORM_ROL}}</ion-label>
+                <ion-select [(ngModel)]="dataIn.rol" [interfaceOptions]="customAlertOptions" interface="alert" [placeholder]="InputForms.SELECT_ONE">
                     <ion-select-option *ngFor="let rol of roles" [value]="rol.rol_id">{{rol.rol_desc}}</ion-select-option>
                 </ion-select>
             </ion-item>
+            <ion-item>
+                <ion-label position="floating">{{InputForms.USER_FORM_NAME}}</ion-label>
+                <ion-input [(ngModel)]="dataIn.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">{{InputForms.USER_FORM_LAST_NAME}}</ion-label>
+                <ion-input [(ngModel)]="dataIn.lastname"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>{{InputForms.USER_FORM_TYPEID}}</ion-label>
+                <ion-select [(ngModel)]="dataIn.typeId" [interfaceOptions]="customAlertOptions" interface="alert" [placeholder]="InputForms.SELECT_ONE">
+                    <ion-select-option *ngFor="let typeId of catalogTypeId" [value]="typeId._id">{{typeId.desc}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
             <ion-item>
 
 
             </ion-item>
         </ion-card>
-        <ion-button expand="full" color="red4">
+        <ion-button expand="full" (click)="createNewUser()" color="red4">
             Crear
         </ion-button>
 
     </div>
-    <!-- <div *ngIf=" roles !== []">
-        <ngx-datatable class="table-box" [rows]="roles" [loadingIndicator]="loadingIndicator" [columns]="columns" [ngClass]="tableStyle" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
-            <ngx-datatable-column name="rolDesc">
-                <ng-template let-column="column" ngx-datatable-header-template> {{ columnDesc }} </ng-template>
+    <div *ngIf=" users !== []">
+        <ngx-datatable class="table-box" [rows]="users" [ngClass]="tableStyle" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
+            <ngx-datatable-column name="codeUser">
+                <ng-template let-column="column" ngx-datatable-header-template> codeUser {{ dataTable.COLUMN_ROL_DESC }} </ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{ value }}
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="actions">
-                <ng-template let-column="column" ngx-datatable-header-template> {{ columnAction }} </ng-template>
+                <ng-template let-column="column" ngx-datatable-header-template> {{ dataTable.COLUMN_ROL_DESC }} </ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     <div style="text-align:center">
                         <ion-button size="small" color="red4">
@@ -47,5 +58,5 @@
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>
-    </div> -->
+    </div>
 </ion-content>

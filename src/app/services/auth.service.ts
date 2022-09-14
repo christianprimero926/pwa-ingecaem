@@ -20,35 +20,29 @@ export class AuthService {
 
   // private currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(
-    private userService: UserService,
-    private authFirebase: AngularFireAuth,
+    private angularFireAuth: AngularFireAuth,
     private router: Router,
-    private alert: AlertsService
+    private userService: UserService,
+    private alertService: AlertsService
   ) { }
 
   async register(newUser: UserI) {
-    try {
-      const user = await this.authFirebase.createUserWithEmailAndPassword(
-        newUser.email,
-        newUser.password
-      ).then(() => {
+    this.angularFireAuth.createUserWithEmailAndPassword(newUser.email, newUser.password)
+      .then(() => {
         this.userService.createUser(newUser);
-      });
-      // return user;
-    } catch (e) {
-      return null;
-    }
+      })
+      .catch((e) => console.log(e));
   }
 
   signIn({ email, password }): Promise<any> {
-    return this.authFirebase.signInWithEmailAndPassword(email, password).then(data => {
+    return this.angularFireAuth.signInWithEmailAndPassword(email, password).then(data => {
       this.userService.getUserById(data.user.uid).pipe(take(2)).subscribe(userData => {
         this.userService.setUser(userData);
         if (userData) {
           this.router.navigateByUrl('/home', { replaceUrl: true });
           // localStorage.setItem('currentUser', userData);
         } else {
-          this.alert.showAlert('Login failed', 'Please try again!!');
+          this.alertService.showAlert('Login failed', 'Please try again!!');
         }
 
       })
@@ -59,7 +53,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.authFirebase.signOut();
+    return this.angularFireAuth.signOut();
   }
 
   getCurrentUser() {

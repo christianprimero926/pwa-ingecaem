@@ -1,1 +1,4 @@
-export const ROL_ADMIN = 1;
+export const ROL_SUPERADMIN = 'INGSADMIN00';
+export const ROL_MANAGER = 'INGMANAG01';
+export const ROL_ADMIN = 'INGADMIN02';
+export const ROL_OPERATOR = 'INGOPERATOR03';

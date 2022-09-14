@@ -11,12 +11,28 @@ export class InteractionsService {
     public loadingCtrl: LoadingController
   ) { }
 
-  async presentToast(msg: string) {
+  async successToast(msg: string) {
     const toast = await this.toastCtrl.create({
       message: msg,
       duration: 3000,
       icon: 'checkmark-done-circle-sharp',
       cssClass: 'success-toast',
+      buttons: [
+        {
+          icon: 'close-sharp',
+          role: 'cancel'
+        }
+      ],
+    });
+    await toast.present();
+  }
+
+  async alertToast(msg: string) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      icon: 'alert-circle-outline',
+      cssClass: 'alert-toast',
       buttons: [
         {
           icon: 'close-sharp',
