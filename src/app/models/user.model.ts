@@ -3,7 +3,8 @@ export interface UserI {
   id_area?: string;
   nit_plants?: string;
   rol: string;
-  id_municipality?: string;
+  department?: string;
+  municipality?: string;
   name: string;
   lastname: string;
   typeId: string;
@@ -18,6 +19,7 @@ export interface UserI {
   password: string;
   arl: string;
   compensation_office: string;
+  avatar?: string;
   uid: string;
 }
 

@@ -11,6 +11,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { TABLE_STYLE_BOOTSTRAP } from '../../../../constants/generic.constants';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { listTypeId } from '../../../../constants/catalogs.constants';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create-user',
@@ -23,9 +24,13 @@ export class CreateUserComponent implements OnInit {
   dataTable = Datatable;
   ColumnMode = ColumnMode;
   dataIn = dataUserIn;
-  catalogTypeId = listTypeId
+  catalogTypeId = listTypeId;
   roles = [];
   users = [];
+  showPicker = false;
+  createUserForm: FormGroup;
+  emailRegex = `([a-zA-Z0-9_.]{1}[a-zA-Z0-9_.]*)((@[a-zA-Z]{2}[a-zA-Z]*)[\\\.]([a-zA-Z]{2}|[a-zA-Z]{3}))`;
+  username = '';
 
   customAlertOptions = {
     header: 'Pizza Toppings',
@@ -34,23 +39,44 @@ export class CreateUserComponent implements OnInit {
     translucent: true,
   };
 
+
+
   constructor(
     private firestoreService: FirestoreService,
     private interaction: InteractionsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder : FormBuilder
+  ) {}
 
-  ) { }
+  // setToday() {
+  //   this.formattedString = format(parseISO(format(new Date(), 'yyyy-MM-dd')), 'MMM d, yyyy');
+  // }
+
+  // dateChanged(value) {
+  //   this.dateValue = value;
+  //   this.formattedString = format(parseISO(value), 'MMM d, yyyy');
+  //   this.showPicker = false;
+  // }
 
   loadUsers() {
 
   }
 
   ngOnInit() {
+    this.dataIn.userName = this.dataIn.name.charAt(0).toLowerCase() +
+                          this.dataIn.lastname
+                          .substring(0, this.dataIn.lastname.indexOf(" "))
+                          .toLowerCase();
     this.getListOfRoles();
-    this.loadUsers();
+    this.createUserForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
+			password: ['', Validators.required]
+    });
   }
 
   createNewUser() {
+    console.log(this.dataIn);
+    return;
     this.authService.register(this.dataIn).then(res => {
       const id = this.firestoreService.generateId();
       this.interaction.showLoading(Constants.LOADING_SAVE);

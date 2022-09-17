@@ -33,6 +33,7 @@
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
     "@swimlane/ngx-datatable": "^20.0.0",
+    "@thiagoprz/ionic-input-mask": "^0.0.4",
     "ngx-order-pipe": "^2.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

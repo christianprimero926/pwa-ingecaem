@@ -1,27 +1,27 @@
 import { TypeId } from '../models/user.model';
 export const listTypeId: TypeId[] = [
   {
+    _id: 'RC',
+    desc: 'Registro de nacimiento'
+  },
+  {
+    _id: 'TI',
+    desc: 'Tarjeta de identidad'
+  },
+  {
     _id: 'CC',
     desc: 'Cedula de ciudadanía'
   },
   {
     _id: 'CE',
-    desc: 'Tarjeta de identidad'
-  },
-  {
-    _id: 'TI',
     desc: 'Cedula de extranjeria'
   },
   {
     _id: 'NIT',
-    desc: 'Numero de identificación tributaria'
+    desc: 'NIT'
   },
   {
-    _id: 'TI',
-    desc: 'Tarjeta de identidad'
-  },
-  {
-    _id: 'PAP',
+    _id: 'PA',
     desc: 'Pasaporte'
   }
 ]
