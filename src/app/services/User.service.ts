@@ -49,8 +49,11 @@ export class UserService {
     return user$
   }
 
-  createUser(user: UserI) {
-    this.angularFirestore.collection(USER_COLLECTION).doc().set(user);
+  createUser(data) {
+    console.log(data.uid);
+    console.log(data);
+    const collection = this.angularFirestore.collection(USER_COLLECTION);
+    return collection.doc(data.uid).set(data);;
   }
 
   get getUser(): Observable<any> {
@@ -84,6 +87,27 @@ export class UserService {
     }
   }
 
+  generatePassword() {
+    let passwordGen = '';
 
+    var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$.-_&/' +
+                    'abcdefghijklmnopqrstuvwxyz0123456789@#$.-_&/';
+
+            for (let i = 1; i <= 10; i++) {
+                var char = Math.floor(Math.random()
+                            * str.length + 1);
+
+                passwordGen += str.charAt(char)
+            }
+
+
+      // Math.random().toString(36).slice(2) +
+      // Math.random().toString(36)
+      //   .toUpperCase().slice(2);
+    return passwordGen;
+
+  }
+
+  tgp6h4heiqm8PAIN73JBCR
 
 }

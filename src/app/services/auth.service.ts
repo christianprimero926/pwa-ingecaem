@@ -6,6 +6,8 @@ import { UserService } from './User.service';
 import { Router } from '@angular/router';
 import { AlertsService } from './Alerts.service';
 import { UserI } from '../models/user.model';
+import { user } from '@angular/fire/auth';
+import { InteractionsService } from './Interactions.service';
 export interface User {
   name: string;
   role: string;
@@ -23,15 +25,21 @@ export class AuthService {
     private angularFireAuth: AngularFireAuth,
     private router: Router,
     private userService: UserService,
-    private alertService: AlertsService
+    private alertService: AlertsService,
+    private interaction: InteractionsService,
   ) { }
 
-  async register(newUser: UserI) {
-    this.angularFireAuth.createUserWithEmailAndPassword(newUser.email, newUser.password)
-      .then(() => {
-        this.userService.createUser(newUser);
+  async register(credentials) {
+    this.angularFireAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+      .then(function (user) {
+        credentials.uid = user.user.uid;
+      }).then(() => {
+        this.userService.createUser(credentials);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.error(e);
+        this.interaction.successToast("Error al crear usuario");
+      });
   }
 
   signIn({ email, password }): Promise<any> {
@@ -40,11 +48,9 @@ export class AuthService {
         this.userService.setUser(userData);
         if (userData) {
           this.router.navigateByUrl('/home', { replaceUrl: true });
-          // localStorage.setItem('currentUser', userData);
         } else {
           this.alertService.showAlert('Login failed', 'Please try again!!');
         }
-
       })
     }).catch(err => {
       console.error(err);

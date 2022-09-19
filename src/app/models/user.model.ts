@@ -1,9 +1,8 @@
 export interface UserI {
-  code_user: string;
+  codeUser: string;
   id_area?: string;
   nit_plants?: string;
   rol: string;
-  department?: string;
   municipality?: string;
   name: string;
   lastname: string;

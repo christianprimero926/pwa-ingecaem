@@ -4,206 +4,250 @@
       <ion-col size="12">
         <div class="" id="role">
           <ion-card class="float">
-          <!-- <form [formGroup]="createUserForm"> -->
-            <div class="flex-container">
-              <div id="left-grid" class="box">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="12">
-                      <h1>{{ InputForms.USER_FORM_SECTION_INFO_CONTACT }}</h1>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_NAME }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.name"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">{{ InputForms.USER_FORM_LAST_NAME }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.lastname"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_PHONE }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.phone_number" maxlength="17" placeholder="(+57) 999-9999999"
-                          mask="(+57) ***-******"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">{{ InputForms.USER_FORM_ADDRESS }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.address"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="12">
-                      <ion-item>
-                        <ion-label>{{ InputForms.USER_FORM_DATE_BIRTH }}
-                        </ion-label>
-                        <ion-datetime-button name="dataIn.date_birth" ngDefaultControl slot="end" datetime="dateBirth">
-                        </ion-datetime-button>
-                      </ion-item>
-                      <ion-modal [keepContentsMounted]="true">
-                        <ng-template>
-                          <ion-datetime id="dateBirth" presentation="date" [showDefaultButtons]="true"></ion-datetime>
-                        </ng-template>
-                      </ion-modal>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6">
-                      <div style="height: 15px"></div>
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_TYPEID }}
-                        </ion-label>
-                        <ion-select [(ngModel)]="dataIn.typeId" [interfaceOptions]="customAlertOptions"
-                          interface="alert" [placeholder]="InputForms.SELECT_ONE">
-                          <ion-select-option *ngFor="let typeId of catalogTypeId" [value]="typeId._id">{{ typeId.desc }}
-                          </ion-select-option>
-                        </ion-select>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="6">
-                      <hr />
-                      <ion-item>
-                        <ion-label position="floating">{{ InputForms.USER_FORM_ID }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn._id" maxlength="10"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="12">
-                      <ion-item>
-                        <ion-label position="floating">{{ InputForms.USER_FORM_MUNICIPALITY }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.municipality"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">{{ InputForms.USER_FORM_ARL }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.arl"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">{{ InputForms.USER_FORM_COMPENSATION }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.compensation_office"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </div>
-              <div id="right-grid" class="box">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col size="12">
-                      <h1>{{ InputForms.USER_FORM_SECTION_INFO_COMPANY }}</h1>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_CODE }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.code_user"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="6">
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_USER_NAME }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.userName">{{
-                          this.dataIn.name.charAt(0).toLowerCase() +
-                          this.dataIn.lastname
-                          .substring(0, this.dataIn.lastname.indexOf(" "))
-                          .toLowerCase()
-                          }}
-                        </ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="12">
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_ROL }}
-                        </ion-label>
-                        <ion-select [(ngModel)]="dataIn.rol" [interfaceOptions]="customAlertOptions" interface="alert"
-                          [placeholder]="InputForms.SELECT_ONE">
-                          <ion-select-option *ngFor="let rol of roles" [value]="rol.rol_id">{{ rol.rol_desc }}
-                          </ion-select-option>
-                        </ion-select>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="12">
-                      <ion-item>
-                        <ion-label>
-                          {{ InputForms.USER_FORM_DATE_IN }}
-                        </ion-label>
-                        <ion-datetime-button name="dataIn.dateIn" ngDefaultControl slot="end" datetime="dateIn">
-                        </ion-datetime-button>
-                      </ion-item>
-                      <ion-modal [keepContentsMounted]="true">
-                        <ng-template>
-                          <ion-datetime id="dateIn" presentation="date" [showDefaultButtons]="true"></ion-datetime>
-                        </ng-template>
-                      </ion-modal>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="12">
+            <form (ngSubmit)="createNewUser()" [formGroup]="createUserForm">
+              <div class="flex-container">
+                <div id="left-grid" class="box">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <h1>{{ InputForms.USER_FORM_SECTION_INFO_CONTACT }}</h1>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="6">
+                        <ion-item class="ion-margin-bottom">
+                          <ion-label position="floating"> {{ InputForms.USER_FORM_NAME }} </ion-label>
+                          <ion-input type="text" placeholder="Ingrese los nombres..." formControlName="name"
+                          (ionChange)="createUserName(createUserForm.get('name').value, createUserForm.get('lastname').value)">
+                          </ion-input>
+                          <ion-note slot="error" *ngIf="(name.dirty || name.touched) && name.errors">
+                            {{validateField(InputForms.USER_FORM_NAME, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-item class="ion-margin-bottom">
+                          <ion-label position="floating"> {{ InputForms.USER_FORM_LAST_NAME }} </ion-label>
+                          <ion-input type="text" placeholder="Ingrese los apellidos..." formControlName="lastname"
+                          (ionChange)="createUserName(createUserForm.get('name').value, createUserForm.get('lastname').value)">
+                          </ion-input>
+                          <ion-note slot="error" *ngIf="(lastname.dirty || lastname.touched) && lastname.errors">
+                            {{validateField(InputForms.USER_FORM_LAST_NAME, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
                         <ion-item>
+                          <ion-label>{{ InputForms.USER_FORM_DATE_BIRTH }}
+                          </ion-label>
+                          <ion-datetime-button slot="end"
+                            datetime="dateBirth">
+                          </ion-datetime-button>
+                          <ion-note slot="error" *ngIf="(date_birth.dirty || date_birth.touched) && date_birth.errors">
+                            {{validateField(InputForms.USER_FORM_DATE_BIRTH, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                        <ion-modal [keepContentsMounted]="true">
+                          <ng-template>
+                            <ion-datetime formControlName="date_birth" id="dateBirth" presentation="date" [showDefaultButtons]="true"></ion-datetime>
+                          </ng-template>
+                        </ion-modal>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="6">
+                        <div style="height: 15px"></div>
+                        <ion-item>
+                          <ion-label position="floating">
+                            {{ InputForms.USER_FORM_TYPEID }}
+                          </ion-label>
+                          <ion-select formControlName="typeId" [interfaceOptions]="customAlertOptions" interface="alert"
+                            [placeholder]="InputForms.SELECT_ONE">
+                            <ion-select-option *ngFor="let typeId of catalogTypeId" [value]="typeId._id">
+                              {{ typeId.desc }}
+                            </ion-select-option>
+                          </ion-select>
+                          <ion-note slot="error" *ngIf="(typeId.dirty || typeId.touched) && typeId.errors">
+                            {{validateField(InputForms.USER_FORM_TYPEID, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col size="6">
+                        <hr />
+                        <ion-item>
+                          <ion-label position="floating">{{ InputForms.USER_FORM_ID }}
+                          </ion-label>
+                          <ion-input formControlName="_id" maxlength="10"></ion-input>
+                          <ion-note slot="error" *ngIf="(_id.dirty || _id.touched) && _id.errors">
+                            {{validateField(InputForms.USER_FORM_ID, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item class="ion-margin-bottom">
+                          <ion-label position="floating">
+                            {{ InputForms.USER_FORM_PHONE }}
+                          </ion-label>
+                          <ion-input type="tel" maxlength="11" placeholder="Ingrese un numero de celular..."
+                            formControlName="cellphone" mask="***-******">
+                            {{ "(+57)" }}
+                          </ion-input>
+                          <ion-note slot="error" *ngIf="(cellphone.dirty || cellphone.touched) && cellphone.errors">
+                            {{validateField(InputForms.USER_FORM_PHONE, "phone")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item>
+                          <ion-label position="floating">{{ InputForms.USER_FORM_ADDRESS }}
+                          </ion-label>
+                          <ion-input type="text" placeholder="Direccion, barrio, etc..." formControlName="adress">
+                          </ion-input>
+                          <ion-note slot="error" *ngIf="(adress.dirty || adress.touched) && adress.errors">
+                            {{validateField(InputForms.USER_FORM_ADDRESS, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item>
+                          <ion-label position="floating">{{ InputForms.USER_FORM_MUNICIPALITY }}
+                          </ion-label>
+                          <ion-input formControlName="municipality"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="6">
+                        <ion-item>
+                          <ion-label position="floating">{{ InputForms.USER_FORM_ARL }}
+                          </ion-label>
+                          <ion-input formControlName="arl"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-item>
+                          <ion-label position="floating">{{ InputForms.USER_FORM_COMPENSATION }}
+                          </ion-label>
+                          <ion-input formControlName="compensation_office"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+                <div id="right-grid" class="box">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <h1>{{ InputForms.USER_FORM_SECTION_INFO_COMPANY }}</h1>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="6">
+                        <ion-item>
+                          <ion-label position="floating">
+                            {{ InputForms.USER_FORM_CODE }}
+                          </ion-label>
+                          <ion-input formControlName="codeUser"></ion-input>
+                          <ion-note slot="error" *ngIf="(codeUser.dirty || codeUser.touched) && codeUser.errors">
+                            {{validateField(InputForms.USER_FORM_CODE, "invalid")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-item>
+                          <ion-label position="floating">
+                            {{ InputForms.USER_FORM_USER_NAME }}
+                          </ion-label>
+                          <ion-input formControlName="username"></ion-input>
+                          <ion-note slot="error" *ngIf="(username.dirty || username.touched) && username.errors">
+                            {{validateField(InputForms.USER_FORM_USER_NAME, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item>
+                          <ion-label position="floating">
+                            {{ InputForms.USER_FORM_ROL }}
+                          </ion-label>
+                          <ion-select formControlName="rol" [interfaceOptions]="customAlertOptions" interface="alert"
+                            [placeholder]="InputForms.SELECT_ONE">
+                            <ion-select-option *ngFor="let rol of roles" [value]="rol.rol_id">{{ rol.rol_desc }}
+                            </ion-select-option>
+                          </ion-select>
+                          <ion-note slot="error" *ngIf="(rol.dirty || rol.touched) && rol.errors">
+                            {{validateField(InputForms.USER_FORM_ROL, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item>
+                          <ion-label>
+                            {{ InputForms.USER_FORM_DATE_IN }}
+                          </ion-label>
+                          <ion-datetime-button slot="end" datetime="dateIn">
+                          </ion-datetime-button>
+                          <ion-note slot="error" *ngIf="(dateIn.dirty || dateIn.touched) && dateIn.errors">
+                            {{validateField(InputForms.USER_FORM_DATE_IN, "blank")}}
+                          </ion-note>
+                        </ion-item>
+                        <ion-modal [keepContentsMounted]="true">
+                          <ng-template>
+                            <ion-datetime formControlName="dateIn" id="dateIn" presentation="date" [showDefaultButtons]="true"></ion-datetime>
+                          </ng-template>
+                        </ion-modal>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item class="ion-margin-bottom">
                           <ion-label position="floating">
                             {{ InputForms.USER_FORM_EMAIL }}
                           </ion-label>
-                          <ion-input [(ngModel)]="dataIn.email" placeholder="example@email.com"></ion-input>
+                          <ion-input type="email" formControlName="email" placeholder="example@email.com"></ion-input>
+                          <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">
+                            {{validateField(InputForms.USER_FORM_EMAIL, "invalid")}}
+                          </ion-note>
                         </ion-item>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="12">
-                      <ion-item>
-                        <ion-label position="floating">
-                          {{ InputForms.USER_FORM_PASSWORD }}
-                        </ion-label>
-                        <ion-input [(ngModel)]="dataIn.password" maxlength="10"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item>
+                          <ion-label position="floating">
+                            {{ InputForms.USER_FORM_PASSWORD }}
+                          </ion-label>
+                          <ion-input maxlength="10" formControlName="password"></ion-input>
+                          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">
+                            {{validateField(InputForms.USER_FORM_PASSWORD, "invalid")}}
+                          </ion-note>
+                          <ion-button slot="end" (click)="generatePass()" color="secondary">
+                            <ion-icon slot="icon-only" name="sync-circle-outline"></ion-icon>
+                          </ion-button>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
               </div>
-            </div>
-          <!-- </form> -->
-            <div class="align-right-button">
-              <ion-button color="success" (click)="createNewUser()">
-                <ion-icon slot="end" name="add-circle"></ion-icon>
-                {{ InputForms.USER_ADD_BUTTON }}
-              </ion-button>
-            </div>
+              <div class="align-right-button">
+                <ion-button color="success" type="submit" >
+                  <ion-icon slot="end" name="add-circle"></ion-icon>
+                  {{ InputForms.USER_ADD_BUTTON }}
+                </ion-button>
+              </div>
+            </form>
           </ion-card>
         </div>
       </ion-col>

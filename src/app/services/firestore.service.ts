@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
-import { Page } from '../models/page.model';
-import { PagedData } from '../models/paged-data.model';
-import { months } from '../../../../../GitHub/HelpDesk/public/bower_components/moment/moment';
-
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +14,7 @@ export class FirestoreService {
   }
 
   createDoc(data: any, path: string, id: string) {
-    console.log(data);
+    console.log(data, path, id);
     const collection = this.firestore.collection(path);
     return collection.doc(id).set(data);
   }

@@ -16,9 +16,7 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loadingController: LoadingController,
-    private alertController: AlertController,
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) { }
 
   // Easy access for form fields
