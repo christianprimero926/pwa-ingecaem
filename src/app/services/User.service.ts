@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DocumentReference, doc, Firestore, docData } from '@angular/fire/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject} from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -11,6 +11,8 @@ import { AlertsService } from './Alerts.service';
 import { FirestoreService } from './firestore.service';
 import { InteractionsService } from './Interactions.service';
 import { USER_COLLECTION } from '../constants/collections.constants';
+import { ROL_SUPERADMIN } from '../constants/roles.constans';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,7 @@ export class UserService {
     private auth: Auth,
     private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
+    private router: Router,
   ) { }
 
   getUserData() {
@@ -108,6 +111,16 @@ export class UserService {
 
   }
 
-  tgp6h4heiqm8PAIN73JBCR
+  navigateByRol(rol: string) {
+    switch (rol) {
+      case ROL_SUPERADMIN:
+        this.router.navigateByUrl('/admin-dashboard', { replaceUrl: true });
+
+        break;
+
+      default:
+        break;
+    }
+  }
 
 }

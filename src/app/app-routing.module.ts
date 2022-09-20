@@ -42,15 +42,15 @@ const routes: Routes = [
   //     import('./modules/details/details.module').then(m => m.DetailsPageModule)
   // },
   {
-    path: 'dashboard',
+    path: 'operator-dashboard',
     loadChildren: () => import('./pages/operator/dashboard/dashboard.module').then(m => m.DashboardPageModule)
+  },
+  {
+    path: 'admin-dashboard',
+    loadChildren: () => import('./pages/admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   { path: 'roles', component: CreateRolComponent },
   { path: 'users', component: CreateUserComponent },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/admin/dashboard/dashboard.module').then(m => m.DashboardPageModule)
-  }
 
 
 

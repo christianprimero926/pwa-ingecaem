@@ -8,8 +8,8 @@ export class FirestoreService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  getDoc(path: string, id: string) {
-    const collection = this.firestore.collection(path);
+  getDoc<type>(path: string, id: string) {
+    const collection = this.firestore.collection<type>(path);
     return collection.doc(id).valueChanges();
   }
 

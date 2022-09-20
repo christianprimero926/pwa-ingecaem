@@ -32,8 +32,8 @@ import { AdminModule } from './pages/admin/admin.module';
     IonicStorageModule.forRoot(),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
+    // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => {
       if (Capacitor.isNativePlatform()) {
         return initializeAuth(getApp(), {
