@@ -242,7 +242,7 @@
                 </div>
               </div>
               <div class="align-right-button">
-                <ion-button color="success" type="submit" >
+                <ion-button color="success" type="submit" [disabled]="!createUserForm.valid">
                   <ion-icon slot="end" name="add-circle"></ion-icon>
                   {{ InputForms.USER_ADD_BUTTON }}
                 </ion-button>
@@ -256,26 +256,68 @@
   <ion-card>
     <div *ngIf="users !== []">
       <ngx-datatable class="table-box" [rows]="users" [ngClass]="tableStyle" [columnMode]="ColumnMode.force"
-        [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true"
+        [scrollbarH]="true">
         <ngx-datatable-column name="codeUser">
           <ng-template let-column="column" ngx-datatable-header-template>
-            codeUser {{ dataTable.COLUMN_ROL_DESC }}
+            {{ dataTable.COLUMN_USER_CODE }}
           </ng-template>
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="actions">
+        <ngx-datatable-column name="username">
           <ng-template let-column="column" ngx-datatable-header-template>
-            {{ dataTable.COLUMN_ROL_DESC }}
+            {{ dataTable.COLUMN_USER_NAME }}
           </ng-template>
           <ng-template let-value="value" ngx-datatable-cell-template>
-            <div style="text-align: center">
-              <ion-button size="small" color="red4">
-                <ion-icon slot="icon-only" size="small" name="create-sharp"></ion-icon>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="fullname">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{ dataTable.COLUMN_FULLNAME }}
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="cellphone">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{ dataTable.COLUMN_PHONE }}
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="adress">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{ dataTable.COLUMN_ADRESS }}
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="municipality">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{ dataTable.COLUMN_MUNICIPALITY }}
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="uid">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            {{ dataTable.COLUMN_ACTIONS }}
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <div>
+              <ion-button size="small" color="red4" (click)="setOpen(true)">
+                <ion-icon slot="icon-only" size="small" name="eye-outline"></ion-icon>
               </ion-button>
+
               <ion-button size="small" color="red4">
-                <ion-icon slot="icon-only" size="small" name="trash"></ion-icon>
+                <ion-icon slot="icon-only" size="small" name="cloud-offline-outline"></ion-icon>
               </ion-button>
             </div>
           </ng-template>
@@ -283,4 +325,58 @@
       </ngx-datatable>
     </div>
   </ion-card>
+
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Connor Smith</h2>
+              <p>Sales Rep</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Daniel Smith</h2>
+              <p>Product Designer</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Greg Smith</h2>
+              <p>Director of Operations</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>Zoey Smith</h2>
+              <p>CEO</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
 </ion-content>

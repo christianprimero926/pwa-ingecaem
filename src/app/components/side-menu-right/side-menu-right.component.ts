@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AvatarService } from '../../services/avatar.service';
 import { UserService } from '../../services/User.service';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-side-menu-right',
@@ -10,6 +11,7 @@ import { UserService } from '../../services/User.service';
   styleUrls: ['./side-menu-right.component.scss'],
 })
 export class SideMenuRightComponent implements OnInit {
+  // @Input() uid: string;
   profile = null;
   email = null;
 
@@ -18,9 +20,10 @@ export class SideMenuRightComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private avatarService: AvatarService,
+    private auth: Auth,
   ) {
     this.email = this.userService.getUserData().email;
-    this.avatarService.getUserProfile().subscribe((data) => {
+    this.avatarService.getUserProfile(auth.currentUser.uid).subscribe((data) => {
       this.profile = data;
     });
   }

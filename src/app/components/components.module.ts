@@ -15,8 +15,6 @@ import { SideMenuLeftComponent } from './side-menu-left/side-menu-left.component
     SideMenuRightComponent,
     SideMenuLeftComponent,
     AccordionComponent
-
-
   ],
   exports: [
     HeaderComponent,

@@ -115,7 +115,6 @@ export class UserService {
     switch (rol) {
       case ROL_SUPERADMIN:
         this.router.navigateByUrl('/admin-dashboard', { replaceUrl: true });
-
         break;
 
       default:

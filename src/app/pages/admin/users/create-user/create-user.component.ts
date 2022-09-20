@@ -26,13 +26,19 @@ export class CreateUserComponent implements OnInit {
   catalogTypeId = listTypeId;
   roles = [];
   users = [];
-  showPicker = false;
   phoneRegEx = "3[0-9]{2}[-][0-9]{7}";
   paswordRegEx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,10}$";
   userCodeRegEx = "^(?=.[0-9]).{4}$"
   createUserForm: FormGroup;
   newUsername = '';
   automaticPassword = '';
+
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    console.log(this.isModalOpen);
+    this.isModalOpen = isOpen;
+  }
 
   customAlertOptions = {
     header: 'Pizza Toppings',
@@ -83,10 +89,12 @@ export class CreateUserComponent implements OnInit {
       id_area: [''],
       nit_plants: [''],
       dateOut: [''],
+      enabled: [''],
       uid: ['']
     });
     this.getListOfRoles();
     this.generatePass();
+    this.getListOfUsers();
   }
 
   async createNewUser() {
@@ -103,24 +111,16 @@ export class CreateUserComponent implements OnInit {
       res.forEach(value => {
         user.push({
           "codeUser": value.codeUser,
-          "rol": value.rol,
-          "name": value.name,
-          "lastname": value.lastname,
-          "typeId": value.typeId,
-          "idUser": value._id,
-          "phoneNumber": value.phone_number,
-          "address": value.address,
-          "dateBirth": value.date_birth,
-          "dateIn": value.dateIn,
-          "userName": value.userName,
-          "email": value.email,
-          "password": value.password,
-          "arl": value.arl,
-          "compensationOffice": value.compensation_office,
+          "username": value.username,
+          "fullname": value.name + ' ' + value.lastname,
+          "cellphone": value.cellphone,
+          "adress": value.adress,
+          "municipality": value.municipality,
           "uid": value.uid
         })
       });
       this.users = user;
+      // console.log(this.users);
     })
 
   }

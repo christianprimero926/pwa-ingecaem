@@ -8,12 +8,12 @@ export interface UserI {
   lastname: string;
   typeId: string;
   _id: string;
-  phone_number: string;
-  address: string;
+  cellphone: string;
+  adress: string;
   date_birth: Date;
   dateIn?: Date;
   dateOut?: Date;
-  userName: string;
+  username: string;
   email: string;
   password: string;
   arl: string;

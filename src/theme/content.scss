@@ -11,6 +11,10 @@
   backdrop-filter: blur(7px);
 }
 
+.datatable-body-cell {
+  white-space: initial !important;
+}
+
 // ion-modal {
 //   // --background: rgba(44, 39, 45, 0.2);
 

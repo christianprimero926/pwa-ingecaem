@@ -7,6 +7,8 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { FirestoreService } from '../services/firestore.service';
 import { UserService } from '../services/User.service';
 import { Observable, of } from 'rxjs';
+import { user, Auth } from '@angular/fire/auth';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-home',
@@ -25,10 +27,12 @@ export class HomePage implements OnInit {
     private avatarService: AvatarService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private auth: Auth,
   ) {
+    console.log(auth.currentUser.uid);
     // console.log(JSON.parse(localStorage.getItem('currentUser')));
-    this.avatarService.getUserProfile().subscribe((data) => {
+    this.avatarService.getUserProfile(auth.currentUser.uid).subscribe((data) => {
       // console.log(data);
       this.profile = data;
     });

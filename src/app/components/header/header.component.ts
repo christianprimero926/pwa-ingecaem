@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController } from '@ionic/angular';
@@ -7,6 +7,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Observable, of } from 'rxjs';
 import { UserService } from '../../services/User.service';
 import { take } from 'rxjs/operators';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  // @Input() uid: string;
   // user$: Observable<any> = of(null);
   // email = this.authService.getCurrentUser().user.email;
   profile = null;
@@ -27,8 +29,9 @@ export class HeaderComponent implements OnInit {
     private avatarService: AvatarService,
     private loadingController: LoadingController,
     private alertController: AlertController,
+    private auth: Auth
   ) {
-    this.avatarService.getUserProfile().subscribe((data) => {
+    this.avatarService.getUserProfile(auth.currentUser.uid).subscribe((data) => {
       this.profile = data;
     });
   }

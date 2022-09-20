@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-side-menu-left',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-menu-left.component.scss'],
 })
 export class SideMenuLeftComponent implements OnInit {
+  @Input() uid: string;
 
   constructor() { }
 

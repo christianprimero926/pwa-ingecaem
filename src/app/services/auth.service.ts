@@ -1,7 +1,8 @@
+import { USER_COLLECTION } from './../constants/collections.constants';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 import { UserService } from './User.service';
 import { Router } from '@angular/router';
 import { AlertsService } from './Alerts.service';
@@ -9,6 +10,8 @@ import { UserI } from '../models/user.model';
 import { InteractionsService } from './Interactions.service';
 import { Storage } from '@ionic/storage';
 import { FirestoreService } from './firestore.service';
+import * as Constants from '../constants/interactions.constants';
+import { authState } from '@angular/fire/auth';
 export interface User {
   name: string;
   role: string;
@@ -20,7 +23,7 @@ const TOKEN_KEY = 'user-access-token';
 })
 export class AuthService {
   user: Observable<any>;
-  authState = new BehaviorSubject(null);
+  private authState = new BehaviorSubject(null);
 
   // private currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(
@@ -31,12 +34,30 @@ export class AuthService {
     private interaction: InteractionsService,
     private storage: Storage,
     private firestoreService: FirestoreService
-  ) { }
+  ) {
+    this.storage.create();
+    this.loadUser();
+    this.user = this.authState.asObservable().pipe(
+      filter(response => response)
+    );
+  }
+
+  loadUser() {
+    this.storage.get(TOKEN_KEY).then(data => {
+      if (data) {
+        // console.log(data);
+        this.authState.next(data);
+      } else {
+        this.authState.next({ email: null, uid: null });
+      }
+    });
+  }
 
   async register(credentials) {
     this.angularFireAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then((user) => {
         credentials.uid = user.user.uid;
+        credentials.enabled = true;
         this.userService.createUser(credentials);
       }).catch((e) => {
         console.error(e);
@@ -44,21 +65,25 @@ export class AuthService {
       });
   }
 
-  signIn(credentials) {
+  async signIn(credentials) {
     let email = credentials.email;
     let password = credentials.password;
-    // let user = null;
+    let userStorage = null;
 
-    return this.angularFireAuth.signInWithEmailAndPassword(email, password).then(data => {
-      console.log(data.user.uid);
-      this.firestoreService.getDoc<UserI>('Users', data.user.uid).pipe(take(1)).subscribe(data => {
-        this.userService.navigateByRol(data.rol);
+    return this.angularFireAuth.signInWithEmailAndPassword(email, password)
+      .then(data => {
+        // console.log(data.user.uid);
+        this.firestoreService.getDoc<UserI>(USER_COLLECTION, data.user.uid).subscribe(data => {
+          this.userService.navigateByRol(data.rol);
+          userStorage = { email: data.email, uid: data.uid, rol: data.rol };
+          this.storage.set(TOKEN_KEY, userStorage);
+          this.authState.next(userStorage);
+        });
+      }).catch(err => {
+        console.error(err);
+        this.alertService.showAlert('Login failed', 'Please try again!!');
+        return null;
       });
-    }).catch(err => {
-      console.error(err);
-      this.alertService.showAlert('Login failed', 'Please try again!!');
-      return null;
-    });
 
   }
 

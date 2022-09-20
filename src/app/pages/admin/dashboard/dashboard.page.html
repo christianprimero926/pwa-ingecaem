@@ -1,9 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
+<app-side-menu-left></app-side-menu-left>
+<app-side-menu-right></app-side-menu-right>
 
 <ion-content>
+  <div *ngIf="users !== []">
+    <ngx-datatable class="table-box" [rows]="users" [ngClass]="tableStyle" [columnMode]="ColumnMode.force"
+      [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
+      <ngx-datatable-column name="codeUser">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          codeUser {{ dataTable.COLUMN_ROL_DESC }}
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{ value }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="actions">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          {{ dataTable.COLUMN_ROL_DESC }}
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div style="text-align: center">
+            <ion-button size="small" color="red4">
+              <ion-icon slot="icon-only" size="small" name="create-sharp"></ion-icon>
+            </ion-button>
+            <ion-button size="small" color="red4">
+              <ion-icon slot="icon-only" size="small" name="trash"></ion-icon>
+            </ion-button>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
 
 </ion-content>
